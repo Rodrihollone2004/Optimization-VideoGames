@@ -13,7 +13,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] bool isActive;
 
     TMP_Text textChar;
-    Queue<char> chars = new Queue<char>();
 
     private void Awake()
     {

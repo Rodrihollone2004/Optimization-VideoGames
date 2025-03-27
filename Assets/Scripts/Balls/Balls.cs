@@ -8,13 +8,14 @@ public class Balls : MonoBehaviour
     protected MeshRenderer meshRenderer;
     protected Rigidbody rb;
     protected TMP_Text textChar;
-    protected Queue<char> chars = new Queue<char>();
-
+    protected Queue<char> chars;
+    
     protected virtual void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        materialPropertyBlock = new MaterialPropertyBlock();
         rb = GetComponent<Rigidbody>();
+        materialPropertyBlock = new MaterialPropertyBlock();
+        chars = new Queue<char>();
 
         textChar = GetComponentInChildren<TMP_Text>();
     }
@@ -28,19 +29,17 @@ public class Balls : MonoBehaviour
 
     public void SetRandomChar()
     {
-        char letter = (char)Random.Range('A', 'Z' + 1);
+        char letter = (char)Random.Range('W', 'Y' + 1);
         chars.Enqueue(letter);
-        textChar.transform.position = transform.position;
         textChar.text = letter.ToString();
     }
 
     private void LateUpdate()
     {
-        // Hacer que el texto siempre siga a la esfera
         if (textChar != null)
         {
-            textChar.transform.position = transform.position + Vector3.up * 0.5f; // Ajuste para que el texto quede encima
-            textChar.transform.rotation = Quaternion.identity; // Evita que rote con la esfera
+            textChar.transform.position = transform.position + Vector3.up * 0.5f; 
+            textChar.transform.rotation = Quaternion.identity; 
         }
     }
 }
