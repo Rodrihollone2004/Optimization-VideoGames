@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1451292498817538655}
   - component: {fileID: 5842138963075572264}
   m_Layer: 0
-  m_Name: Slow Ball
+  m_Name: Slow Pool Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

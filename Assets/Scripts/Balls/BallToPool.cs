@@ -2,7 +2,13 @@
 
 public class BallToPool : MonoBehaviour
 {
+    Rigidbody rb;
     PoolBalls poolBalls;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
@@ -13,7 +19,10 @@ public class BallToPool : MonoBehaviour
     {
         if(transform.position.y <= 0)
         {
+            rb.isKinematic = true;
             poolBalls.ReturnObject(gameObject);
         }
+        else
+            rb.isKinematic = false;
     }
 }

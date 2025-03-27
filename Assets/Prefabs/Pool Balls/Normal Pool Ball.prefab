@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 9144711230178991084}
   - component: {fileID: 6798770416274949482}
   - component: {fileID: 2129397883893909176}
-  - component: {fileID: 4751124148456690356}
-  - component: {fileID: -6866799685802397581}
+  - component: {fileID: -8981360722959372851}
+  - component: {fileID: -5970423733108012917}
   m_Layer: 0
-  m_Name: Fast Ball
+  m_Name: Normal Pool Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4751124148456690356
+--- !u!114 &-8981360722959372851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,12 +146,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5197107197673876892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196c3ca423faf1d439fb540493fc9d60, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f0fdd82235c542489e6b8a24a6b42ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleMultiplier: 0.5
-  speed: 2
---- !u!114 &-6866799685802397581
+  currentTime: 0
+  moveTime: 1
+  offSet: 1
+--- !u!114 &-5970423733108012917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

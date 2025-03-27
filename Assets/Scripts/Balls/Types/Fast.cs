@@ -6,8 +6,6 @@ public class Fast : Balls
     [SerializeField] float speed = 2f; 
     private Vector3 initialScale; 
 
-    Vector3 scale;
-
     protected override void Awake()
     {
         base.Awake();
