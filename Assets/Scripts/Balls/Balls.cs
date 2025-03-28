@@ -8,14 +8,12 @@ public class Balls : MonoBehaviour
     protected MeshRenderer meshRenderer;
     protected Rigidbody rb;
     protected TMP_Text textChar;
-    protected Queue<char> chars;
     
     protected virtual void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
         materialPropertyBlock = new MaterialPropertyBlock();
-        chars = new Queue<char>();
 
         textChar = GetComponentInChildren<TMP_Text>();
     }
@@ -27,11 +25,12 @@ public class Balls : MonoBehaviour
         meshRenderer.SetPropertyBlock(materialPropertyBlock);
     }
 
-    public void SetRandomChar()
+    public char SetRandomChar()
     {
         char letter = (char)Random.Range('W', 'Y' + 1);
-        chars.Enqueue(letter);
         textChar.text = letter.ToString();
+
+        return letter;
     }
 
     private void LateUpdate()

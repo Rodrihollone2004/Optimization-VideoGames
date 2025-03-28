@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TMPro;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -12,9 +12,12 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] bool isActive;
 
+    CheckManager checkerManager;
+
     private void Start()
     {
-        posSpawn = transform.position;        
+        posSpawn = transform.position;
+        checkerManager = FindObjectOfType<CheckManager>();
     }
 
     private void Update()
@@ -37,7 +40,8 @@ public class SpawnManager : MonoBehaviour
                 Vector3 timePos = new Vector3(Random.Range(posSpawn.x - 5f, posSpawn.x + 2f), posSpawn.y, posSpawn.z);
                 int index = Random.Range(0, balls.Length);
                 GameObject newBall = Instantiate(balls[index], timePos, Quaternion.identity);
-                newBall.GetComponent<Balls>().SetRandomChar();
+                char letter = newBall.GetComponent<Balls>().SetRandomChar();
+                checkerManager.CheckX.Add(letter);
                 currentTime = 0;
             }
         }
