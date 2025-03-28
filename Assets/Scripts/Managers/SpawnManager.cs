@@ -12,13 +12,6 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] bool isActive;
 
-    TMP_Text textChar;
-
-    private void Awake()
-    {
-        textChar = GetComponent<TMP_Text>();
-    }
-
     private void Start()
     {
         posSpawn = transform.position;        
