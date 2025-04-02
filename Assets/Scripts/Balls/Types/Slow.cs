@@ -10,9 +10,11 @@ public class Slow : Balls
         base.Awake();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SetColor(Color.blue);
+        SetRandomChar();
     }
 
     private void Update()
@@ -21,7 +23,7 @@ public class Slow : Balls
         StopFalling();
     }
 
-    public void StopFalling()
+    private void StopFalling()
     {
         if(currentTime >= stopTime)
         {
@@ -30,5 +32,12 @@ public class Slow : Balls
         }
         else 
             rb.isKinematic = false;
+    }
+
+    private void SetRandomChar()
+    {
+        letter = (char)Random.Range('W', 'Y' + 1);
+        textChar.text = letter.ToString();
+        checkManager.Balls.Add(this);
     }
 }

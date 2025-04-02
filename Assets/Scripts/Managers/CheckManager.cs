@@ -1,84 +1,61 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class CheckManager : MonoBehaviour
 {
-    [SerializeField] List<char> checkX;
-    [SerializeField] int countX;
+    [SerializeField] List<Balls> balls;
 
-    public List<char> CheckX { get => checkX; private set => checkX = value; }
+    [SerializeField] TMP_Text countLinqText;
+    [SerializeField] TMP_Text countForEachText;
+    [SerializeField] TMP_Text countForText;
+
+    public List<Balls> Balls { get => balls; private set => balls = value; }
 
     private void Awake()
     {
-        checkX = new List<char>();
+        balls = new List<Balls>();
     }
 
     private void Update()
     {
-        //LinqCheckX();
-        //ForEachCheckX();
-        ForCheckX();
+        CounterX();
     }
 
-    public void LinqCheckX()
+    private void CounterX()
     {
-        countX = checkX.Count(c => c == 'X');
+        int countLinkQ = 0;
+        int countForEach = 0;
+        int countFor = 0;
 
-        if (countX >= 5)
+        if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            Debug.Log("QUINTA X (LINQ)");
-            countX = 0;
-            checkX.Clear();
+            countLinkQ = balls.Count(balls => balls.Letter == 'X');
+            countLinqText.text = "Count LinkQ: " + countLinkQ.ToString();
         }
-    }
-
-    public void ForEachCheckX()
-    {
-        if (countX < 5)
+        else if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            List<char> toRemove = new List<char>();
-
-            foreach (char c in checkX)
-            {
-                if (c == 'X')
+            foreach (Balls ball in balls)
+                if (ball.Letter == 'X')
                 {
-                    countX++;
-                    toRemove.Add(c);
+                    countForEach++;
+                    countForEachText.text = "Count For Each: " + countForEach.ToString();
+                    if (countForEach > 4)
+                        break;
                 }
-            }
-
-            foreach (char c in toRemove)
-            {
-                checkX.Remove(c);
-            }
+            
         }
-        else if (countX >= 5)
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            Debug.Log("QUINTA X (FOR EACH)");
-            countX = 0;
-            checkX.Clear();
-        }
-    }
-
-    public void ForCheckX()
-    {
-        if (countX < 5)
-        {
-            for (int i = 0; i < checkX.Count; i++)
-            {
-                if (checkX.Contains('X'))
+            for(int i = 0; i < balls.Count; i++)
+                if (balls[i].Letter == 'X')
                 {
-                    countX++;
-                    checkX.Remove('X');
+                    countFor++;
+                    countForText.text = "Count For: " + countFor.ToString();
+                    if(countFor > 4)
+                        break;
                 }
-            }
-        }
-        else if (countX >= 5)
-        {
-            Debug.Log("QUINTA X (FOR)");
-            countX = 0;
-            checkX.Clear();
         }
     }
 }

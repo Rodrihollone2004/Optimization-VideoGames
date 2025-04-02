@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class Normal : Balls
@@ -11,9 +13,11 @@ public class Normal : Balls
         base.Awake();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SetColor(Color.red);
+        SetRandomChar();
     }
 
     private void Update()
@@ -22,12 +26,19 @@ public class Normal : Balls
         TeleportBall();
     }
 
-    public void TeleportBall()
+    private void TeleportBall()
     {
         if (currentTime >= moveTime)
         {
             transform.Translate(new Vector3(offSet ,0 ,0));
             currentTime = 0;
         }
+    }
+
+    private void SetRandomChar()
+    {
+        letter = (char)Random.Range('W', 'Y' + 1);
+        textChar.text = letter.ToString();
+        checkManager.Balls.Add(this);
     }
 }

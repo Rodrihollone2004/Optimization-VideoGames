@@ -7,8 +7,12 @@ public class Balls : MonoBehaviour
     protected MaterialPropertyBlock materialPropertyBlock;
     protected MeshRenderer meshRenderer;
     protected Rigidbody rb;
+    protected char letter;
+    protected CheckManager checkManager;
     protected TMP_Text textChar;
     
+    public char Letter => letter;
+
     protected virtual void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -18,19 +22,16 @@ public class Balls : MonoBehaviour
         textChar = GetComponentInChildren<TMP_Text>();
     }
 
+    protected virtual void Start()
+    {
+        checkManager = FindObjectOfType<CheckManager>();
+    }
+
     protected void SetColor(Color color)
     {
         meshRenderer.GetPropertyBlock(materialPropertyBlock);
         materialPropertyBlock.SetColor("_Color", color);
         meshRenderer.SetPropertyBlock(materialPropertyBlock);
-    }
-
-    public char SetRandomChar()
-    {
-        char letter = (char)Random.Range('W', 'Y' + 1);
-        textChar.text = letter.ToString();
-
-        return letter;
     }
 
     private void LateUpdate()

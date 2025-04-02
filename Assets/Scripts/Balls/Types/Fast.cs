@@ -11,11 +11,13 @@ public class Fast : Balls
         base.Awake();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SetColor(Color.black);
 
         initialScale = transform.localScale; 
+        SetRandomChar();
     }
 
     private void Update()
@@ -23,9 +25,16 @@ public class Fast : Balls
         SinusoidalFunction();
     }
 
-    public void SinusoidalFunction()
+    private void SinusoidalFunction()
     {
         float scaleFactor = Mathf.Sin(Time.time * speed) * scaleMultiplier + 1;
         transform.localScale = initialScale * scaleFactor;
+    }
+
+    private void SetRandomChar()
+    {
+        letter = (char)Random.Range('W', 'Y' + 1);
+        textChar.text = letter.ToString();
+        checkManager.Balls.Add(this);
     }
 }
